@@ -7,4 +7,4 @@ User = get_user_model()
 class CreationForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         moedl = User
-        fields = ('name', 'username', 'email')
+        fields = ('first_name', 'username', 'email')
