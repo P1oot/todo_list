@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load user_filters %}
+{% block title %}
+  {% if is_group %}
+    {% if is_edit %}
+      редактировать группу
+    {% else %}
+      Создать группу
+    {% endif %}
+  {% else %}
+    {% if is_edit %}
+      Редактировать задачу
+    {% else %}
+      Создать задачу
+    {% endif %}
+  {% endif %}
+{% endblock title %}
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-md-8 p-5">
+      <div class='card'>
+        <div class='card-header'>
+          {% if is_group %}
+            {% if is_edit %}
+              редактировать группу
+            {% else %}
+              Создать группу
+            {% endif %}
+          {% else %}
+            {% if is_edit %}
+              Редактировать задачу
+            {% else %}
+              Создать задачу
+            {% endif %}
+          {% endif %}
+        </div>
+        <div class="card-body">
+          {% if is_group %}
+            {% if is_edit %}
+              <form method="post" action="{% url 'list:group_edit' gtoup_id %}">
+            {% else %}
+              <form method="post" action="{% url 'list:group_create' %}">
+            {% endif %}
+          {% else %}
+            {% if is_edit %}
+              <form method="post" action="{% url 'list:task_edit' task_id %}">
+            {% else %}
+              <form method="post" action="{% url 'list:task_create' %}">
+            {% endif %}
+          {% endif %}
+            {% csrf_token %}
+            {% for field in form %}
+              <div class="form-group row my-3 p-3">
+                <label for="{{ field.id_for_lable }}">
+                  {{ field.label }}
+                </label>
+                {{ field|addclass:'form-control' }}
+              </div>
+            {% endfor %}
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary">
+                Сохранить
+              </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

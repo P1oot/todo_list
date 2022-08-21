@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}TODO List{% endblock title %}
+{% block content %}
+  <a href="{% url 'list:task_create' %}">Создать задачу</a>
+  <a href="{% url 'list:group_create' %}">Создать группу</a>
+  <p>Группы:</p>
+  <p>Задачи:</p>
+  {% for task in todo_list %}
+    <p>
+      {{ task.title }}
+      <a href="{% url 'list:task_edit' task.id %}">
+        редактировать задачу
+      </a>
+    </p>
+  {% endfor %}
+{% endblock content %}
