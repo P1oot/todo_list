@@ -1,4 +1,3 @@
-from multiprocessing import context
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Group, Task
 from .forms import TaskForm, GroupForm
@@ -22,6 +21,7 @@ def task_create(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.author = request.user
+            print(request.user)
             form.save()
             return redirect('list:index')
     context = {
@@ -35,6 +35,8 @@ def group_create(request):
     form = GroupForm(request.POST or None, files=request.FILES or None)
     if request.method == 'POST':
         if form.is_valid():
+            task = form.save(commit=False)
+            task.author = request.user
             form.save()
             return redirect('list:index')
     context = {
@@ -83,3 +85,13 @@ def group_edit(request, group_id):
         'is_edit': True,
     }
     return render(request, template, context)
+
+
+def task_delete(request, task_id):
+    Task.objects.filter(author=request.user, id=task_id).delete()
+    return redirect('list:index')
+
+
+def group_delete(request, group_id):
+    Group.objects.filter(author=request.user, id=group_id).delete()
+    return redirect('list:index')

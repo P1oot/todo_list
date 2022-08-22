@@ -17,6 +17,12 @@ class Group(models.Model):
         blank=True,
         null=True,
     )
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='group',
+        verbose_name='User',
+    )
 
     def __str__(self) -> str:
         return self.title
@@ -36,7 +42,7 @@ class Task(models.Model):
     )
     group = models.ForeignKey(
         Group,
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         related_name='todo_group',
         verbose_name='Группа',
         help_text='Группировка',

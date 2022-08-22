@@ -4,12 +4,26 @@
   <a href="{% url 'list:task_create' %}">Создать задачу</a>
   <a href="{% url 'list:group_create' %}">Создать группу</a>
   <p>Группы:</p>
+  {% for group in group_list %}
+    <p>
+      {{ group.title }}
+      <a href="{% url 'list:group_edit' group.id %}">
+        Редактировать группу
+      </a>
+      <a href="{% url 'list:group_delete' group.id %}">
+        Удалить группу
+      </a>
+    </p>
+  {% endfor %}
   <p>Задачи:</p>
   {% for task in todo_list %}
     <p>
       {{ task.title }}
       <a href="{% url 'list:task_edit' task.id %}">
-        редактировать задачу
+        Редактировать задачу
+      </a>
+      <a href="{% url 'list:task_delete' task.id %}">
+        Удалить задачу
       </a>
     </p>
   {% endfor %}
