@@ -5,9 +5,11 @@ from .forms import TaskForm, GroupForm
 
 def index(request):
     template = 'todo/index.html'
-    todo_list = Task.objects.all()
-    group_list = Group.objects.all()
+    user_is_auth = request.user.is_authenticated
+    todo_list = Task.objects.filter(author=request.user).all()
+    group_list = Group.objects.filter(author=request.user).all()
     context = {
+        'is_auth': user_is_auth,
         'todo_list': todo_list,
         'group_list': group_list
     }

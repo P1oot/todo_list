@@ -9,7 +9,7 @@ class Group(models.Model):
     title = models.TextField(
         max_length=100,
         verbose_name='Название группы',
-        help_text='Группировка задач',
+        help_text='Название группы',
     )
     description = models.TextField(
         verbose_name='Описание группы',
@@ -36,7 +36,7 @@ class Task(models.Model):
     )
     description = models.TextField(
         verbose_name='Описание задачи',
-        help_text='Описание задачи',
+        help_text='Описание',
         blank=True,
         null=True,
     )
@@ -56,8 +56,8 @@ class Task(models.Model):
         verbose_name='User',
     )
     created = models.DateTimeField(
-        verbose_name='Запланированная дата',
-        help_text='Запланированнвя дата',
+        verbose_name='Дата создания',
+        help_text='Дата создания',
         default=datetime.now()
         )
 

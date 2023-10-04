@@ -1,0 +1,7 @@
+{% block content %}
+  {% if is_auth %}
+    <a href="{% url "users:logout" %}">Выйти</a>
+  {% else %}
+    <a href="{% url "users:login" %}">Войти</a>
+  {% endif %}
+{% endblock content %}

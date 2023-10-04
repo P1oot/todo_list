@@ -3,7 +3,7 @@
 {% block title %}
   {% if is_group %}
     {% if is_edit %}
-      редактировать группу
+      Редактировать группу
     {% else %}
       Создать группу
     {% endif %}
@@ -22,7 +22,7 @@
         <div class='card-header'>
           {% if is_group %}
             {% if is_edit %}
-              редактировать группу
+              Редактировать группу
             {% else %}
               Создать группу
             {% endif %}
@@ -37,7 +37,7 @@
         <div class="card-body">
           {% if is_group %}
             {% if is_edit %}
-              <form method="post" action="{% url 'list:group_edit' gtoup_id %}">
+              <form method="post" action="{% url 'list:group_edit' group_id %}">
             {% else %}
               <form method="post" action="{% url 'list:group_create' %}">
             {% endif %}
