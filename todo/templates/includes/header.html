@@ -1,7 +1,11 @@
 {% block content %}
   {% if is_auth %}
-    <a href="{% url "users:logout" %}">Выйти</a>
+    <a href="{% url "users:logout" %}" role="button" class="btn btn-primary">
+      Выйти
+    </a>
   {% else %}
-    <a href="{% url "users:login" %}">Войти</a>
+    <a href="{% url "users:login" %}" role="button" class="btn btn-primary">
+      Войти
+    </a>
   {% endif %}
 {% endblock content %}

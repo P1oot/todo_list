@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 {% block title %}TODO List{% endblock title %}
 {% block content %}
-  <a href="{% url 'list:task_create' %}">Создать задачу</a>
-  <a href="{% url 'list:group_create' %}">Создать группу</a>
+  <a href="{% url 'list:task_create' %}" role="button" class="btn btn-primary">
+    Создать задачу
+  </a>
+  <a href="{% url 'list:group_create' %}" role="button" class="btn btn-primary">
+    Создать группу
+  </a>
   <p>Группы:</p>
   {% for group in group_list %}
     <p>
       {{ group.title }}
-      <a href="{% url 'list:group_edit' group.id %}">
+      <a href="{% url 'list:group_edit' group.id %}" role="button" class="btn btn-outline-primary">
         Редактировать группу
       </a>
-      <a href="{% url 'list:group_delete' group.id %}">
+      <a href="{% url 'list:group_delete' group.id %}" role="button" class="btn btn-outline-secondary">
         Удалить группу
       </a>
     </p>
@@ -19,10 +23,10 @@
   {% for task in todo_list %}
     <p>
       {{ task.title }}
-      <a href="{% url 'list:task_edit' task.id %}">
+      <a href="{% url 'list:task_edit' task.id %}" role="button" class="btn btn-outline-primary">
         Редактировать задачу
       </a>
-      <a href="{% url 'list:task_delete' task.id %}">
+      <a href="{% url 'list:task_delete' task.id %}" role="button" class="btn btn-outline-secondary">
         Удалить задачу
       </a>
     </p>
