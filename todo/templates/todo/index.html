@@ -7,9 +7,11 @@
   <a href="{% url 'list:group_create' %}" role="button" class="btn btn-primary">
     Создать группу
   </a>
-  <p>Группы:</p>
+  <hr style="size: 10px; color: gray">
+  <h4>Группы:</h4>
+  <hr style="size: 10px; color: gray">
   {% for group in group_list %}
-    <p>
+    <p style="font-size: 24px">
       {{ group.title }}
       <a href="{% url 'list:group_edit' group.id %}" role="button" class="btn btn-outline-primary">
         Редактировать группу
@@ -18,10 +20,12 @@
         Удалить группу
       </a>
     </p>
+    <hr style="size: 10px; color: gray">
   {% endfor %}
-  <p>Задачи:</p>
+  <h4>Задачи:</h4>
+  <hr style="size: 10px; color: gray">
   {% for task in todo_list %}
-    <p>
+    <p style="font-size: 24px">
       {{ task.title }}
       <a href="{% url 'list:task_edit' task.id %}" role="button" class="btn btn-outline-primary">
         Редактировать задачу
@@ -30,5 +34,6 @@
         Удалить задачу
       </a>
     </p>
+    <hr style="size: 10px; color: gray">
   {% endfor %}
 {% endblock content %}
