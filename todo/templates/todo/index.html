@@ -12,7 +12,9 @@
   <hr style="size: 10px; color: gray">
   {% for group in group_list %}
     <p style="font-size: 24px">
-      {{ group.title }}
+      <a href="{% url 'list:group_tasks' group.id %}">
+        {{ group.title }}
+      </a>
       <a href="{% url 'list:group_edit' group.id %}" role="button" class="btn btn-outline-primary">
         Редактировать группу
       </a>

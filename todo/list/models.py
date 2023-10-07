@@ -55,11 +55,19 @@ class Task(models.Model):
         related_name='todo',
         verbose_name='User',
     )
+    deadline = models.DateTimeField(
+        verbose_name='Дедлайн',
+        help_text='Дедлайн',
+        default=datetime.now()
+    )
     created = models.DateTimeField(
         verbose_name='Дата создания',
         help_text='Дата создания',
         default=datetime.now()
-        )
+    )
+    # preority = models.IntegerField(
+    #     verbose_name='Преоритет'
+    # )
 
     def __str__(self) -> str:
         return self.title

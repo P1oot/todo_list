@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ group.title }}{% endblock title %}
+{% block content %}
+  <a href="{% url 'list:index' %}" role="button" class="btn btn-primary" >
+    Назад
+  </a>
+  <hr style="size: 10px; color: gray">
+  {% for task in todo_list %}
+    <p style="font-size: 24px">
+      {{ task.title }}
+      <a href="{% url 'list:task_edit' task.id %}" role="button" class="btn btn-outline-primary">
+        Редактировать задачу
+      </a>
+      <a href="{% url 'list:task_delete' task.id %}" role="button" class="btn btn-outline-secondary">
+        Удалить задачу
+      </a>
+    </p>
+    <hr style="size: 10px; color: gray">
+  {% endfor %}
+{% endblock content %}
+

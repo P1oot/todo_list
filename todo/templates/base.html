@@ -12,13 +12,15 @@
       <style>
         body{
           background-color:black;
+        }
+        p, h4{
           color: #bfbfbf
         }
       </style>
   </head>
   <body>
     <header>
-      <div class="container py-5">
+      <div class="container py-3">
         {% include 'includes/header.html' %}
       </div>
     </header>
@@ -27,6 +29,12 @@
         {% block content %}
         {% endblock %}
       </div>
+      <p>
+        Ссылка на описание
+        Сортировка по группам
+        Сортировка по датам + даты выполнения
+        Перетаскивание 
+      </p>
     </main>
     {% comment %} <footer class="border-top text-center py-3">
       {% include 'includes/footer.html' %}

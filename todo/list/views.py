@@ -16,6 +16,17 @@ def index(request):
     return render(request, template, context)
 
 
+def group_tasks(request, group_id):
+    template = 'todo/group_tasks.html'
+    todo_list = Task.objects.filter(author=request.user, group=group_id).all()
+    group = Group.objects.get(pk=group_id)
+    context = {
+        'todo_list': todo_list,
+        'group': group,
+    }
+    return render(request, template, context)
+
+
 def task_create(request):
     template = 'todo/creation.html'
     form = TaskForm(request.POST or None, files=request.FILES or None)
