@@ -5,6 +5,7 @@ app_name = 'list'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('deadline/', views.index_deadline, name='index_deadline'),
     path('task_create/', views.task_create, name='task_create'),
     path('group_create/', views.group_create, name='group_create'),
     path('group/<int:group_id>/', views.group_tasks, name='group_tasks'),

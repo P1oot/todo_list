@@ -3,16 +3,30 @@ from .models import Group, Task
 from .forms import TaskForm, GroupForm
 
 
-def index(request):
-    template = 'todo/index.html'
+def index_base(request, template, todo_list):
     user_is_auth = request.user.is_authenticated
-    todo_list = Task.objects.filter(author=request.user).all()
-    group_list = Group.objects.filter(author=request.user).all()
+    group_list = Group.objects.filter(author=request.user.id).all()
     context = {
         'is_auth': user_is_auth,
         'todo_list': todo_list,
-        'group_list': group_list
+        'group_list': group_list,
     }
+    return context
+
+
+def index(request):
+    template = 'todo/index.html'
+    todo_list = Task.objects.filter(author=request.user.id).all()
+    context = index_base(request, template, todo_list)
+    return render(request, template, context)
+
+
+def index_deadline(request):
+    template = 'todo/index.html'
+    todo_list = (Task.objects.filter(author=request.user)
+                 .order_by('-deadline').all())
+    context = index_base(request, template, todo_list)
+    context['is_deadline'] = True
     return render(request, template, context)
 
 

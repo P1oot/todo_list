@@ -1,41 +1,55 @@
 {% extends 'base.html' %}
 {% block title %}TODO List{% endblock title %}
 {% block content %}
-  <a href="{% url 'list:task_create' %}" role="button" class="btn btn-primary">
-    Создать задачу
-  </a>
-  <a href="{% url 'list:group_create' %}" role="button" class="btn btn-primary">
-    Создать группу
-  </a>
-  <hr style="size: 10px; color: gray">
-  <h4>Группы:</h4>
-  <hr style="size: 10px; color: gray">
-  {% for group in group_list %}
-    <p style="font-size: 24px">
-      <a href="{% url 'list:group_tasks' group.id %}">
-        {{ group.title }}
-      </a>
-      <a href="{% url 'list:group_edit' group.id %}" role="button" class="btn btn-outline-primary">
-        Редактировать группу
-      </a>
-      <a href="{% url 'list:group_delete' group.id %}" role="button" class="btn btn-outline-secondary">
-        Удалить группу
-      </a>
-    </p>
+  {% if is_auth %}
+    <a href="{% url 'list:task_create' %}" role="button" class="btn btn-primary">
+      Создать задачу
+    </a>
+    <a href="{% url 'list:group_create' %}" role="button" class="btn btn-primary">
+      Создать группу
+    </a>
+    {% if is_deadline %}
+    <a href="{% url 'list:index' %}" role="button" class="btn btn-primary">
+      Группировка по дате добавления
+    </a>
+    {% else %}
+    <a href="{% url 'list:index_deadline' %}" role="button" class="btn btn-primary">
+      Группировка по дедлайну
+    </a>
+    {% endif %}
     <hr style="size: 10px; color: gray">
-  {% endfor %}
-  <h4>Задачи:</h4>
-  <hr style="size: 10px; color: gray">
-  {% for task in todo_list %}
-    <p style="font-size: 24px">
-      {{ task.title }}
-      <a href="{% url 'list:task_edit' task.id %}" role="button" class="btn btn-outline-primary">
-        Редактировать задачу
-      </a>
-      <a href="{% url 'list:task_delete' task.id %}" role="button" class="btn btn-outline-secondary">
-        Удалить задачу
-      </a>
-    </p>
+    <h4>Группы:</h4>
     <hr style="size: 10px; color: gray">
-  {% endfor %}
+    {% for group in group_list %}
+      <p style="font-size: 24px">
+        <a href="{% url 'list:group_tasks' group.id %}">
+          {{ group.title }}
+        </a>
+        <a href="{% url 'list:group_edit' group.id %}" role="button" class="btn btn-outline-primary">
+          Редактировать группу
+        </a>
+        <a href="{% url 'list:group_delete' group.id %}" role="button" class="btn btn-outline-secondary">
+          Удалить группу
+        </a>
+      </p>
+      <hr style="size: 10px; color: gray">
+    {% endfor %}
+    <h4>Задачи:</h4>
+    <hr style="size: 10px; color: gray">
+    {% for task in todo_list %}
+      <p>
+        {{ task.deadline }}
+      </p>
+      <p style="font-size: 24px">
+        {{ task.title }}
+        <a href="{% url 'list:task_edit' task.id %}" role="button" class="btn btn-outline-primary">
+          Редактировать задачу
+        </a>
+        <a href="{% url 'list:task_delete' task.id %}" role="button" class="btn btn-outline-secondary">
+          Удалить задачу
+        </a>
+      </p>
+      <hr style="size: 10px; color: gray">
+    {% endfor %}
+  {% endif %}
 {% endblock content %}

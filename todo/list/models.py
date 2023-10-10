@@ -58,7 +58,9 @@ class Task(models.Model):
     deadline = models.DateTimeField(
         verbose_name='Дедлайн',
         help_text='Дедлайн',
-        default=datetime.now()
+        default=datetime.now(),
+        blank=True,
+        null=True
     )
     created = models.DateTimeField(
         verbose_name='Дата создания',

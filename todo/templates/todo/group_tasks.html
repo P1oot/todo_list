@@ -6,6 +6,9 @@
   </a>
   <hr style="size: 10px; color: gray">
   {% for task in todo_list %}
+    <p>
+      {{ task.deadline }}
+    </p>
     <p style="font-size: 24px">
       {{ task.title }}
       <a href="{% url 'list:task_edit' task.id %}" role="button" class="btn btn-outline-primary">
